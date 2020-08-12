@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:text="탁도"
+        android:fontFamily="@font/hangulnuribold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/water_color"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"  >
+    <TextView
+        android:id="@+id/textView2"
+        android:textColor="#000000"
+        android:fontFamily="@font/hangulnuri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "\n정의:물이 탁하게 보이는 정도.물의 선명도를 떨어뜨리는 미세한 현탁 물질에 의해 유발되는데, 주로 박테리아, 조류, 실트, 점토, 유기물 등이 콜로이드성 물질로 존재하기 때문이다.
+물로 통과하는 빛이 이러한 비용해성 부유물질에 의해 산란되거나 흡수되어 흐리게 보여지는데, 수질 지표로서 탁도는 보통 빛을 입사시켜 부유물질에 의해 산란된 정도를 광학적으로 측정하여 나타냄.
+탁도의 정도를 나타내는 단위에 NTU(Nephelo-metric Turbidity Unit)를 사용하는데 이는 우윳빛의 표준 입자 polymer를 사용하여 얻어지는 것을 기준으로 한 값임.\n\n기준: 위 표를 참조\n\n측정: 측정은 탁도계를 사용해여 측정하고 있다. 탁도(수중의 부유물들 등에 의하여 물이 혼탁한 정도)를 측정하는 계기로, 수중에 분산되어 있는 미분자의 상태를 정량적으로 계측하는 혼탁측정기. 계측의 수단은 수중을 투과하는 빛이 분산입자에 의하여 반사 또는 산란되는 정도를 표준액과 비교하는 방법이 대부분이다. 표준액은 정제수 속에 정제카올린 1mg을 함유할 때의 탁도를 1도(카올린)로 정해 놓고 있다. 카올린은 점토의 일종으로서, 실리카, 알루미나를 주성분으로 하는 백색의 천연물이다. 투과광 방식은 비직선성 보정을 전자회로로 하여 높은 탁도까지 사용할 수 있다. 한편, 시료수의 착색 등, 빛의 흡수가 있는 경우는 오차를 일으킨다. 산란방식은 낮은 탁도용으로 많이 쓰이고, 탁상용에도 많다. 착색수에 대해서는 투과광 방식과 같이 오차를 고려할 필요가 있다." />
+    </ScrollView>
+
+</LinearLayout>

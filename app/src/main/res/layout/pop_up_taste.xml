@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:text="맛"
+        android:fontFamily="@font/hangulnuribold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/water_taste"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"  >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:textColor="#000000"
+        android:fontFamily="@font/hangulnuri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "\n정의 : '마시는 물의 맛'을 뜻한다. 일각에선 물맛이 제 6의 맛이라 주장하나, 물맛은 신 맛을 감지하는 감각 수용기 세포가 느끼는 것이다. 신맛을 느끼는 미각수용체에 물을 떨어트렸더니 반응을 했다고 한다.물에 녹아있는 미네랄이나, 탄산 등의 성분이나, 산성도 변화에 따라 미세한 맛 차이가 느껴질 수 있지만, 물 자체는 아무런 맛이 없다.\n\n기준: '적합 = 매우 좋음', '부적합 = 매우 나쁨' 으로 출력하고 있다.\n\n 측정: 5가지를 기준으로 물 맛이 측정된다.\n1. 페하(pH)\npH는 물에 녹아 있는 수소 이온의 농도와 관련된 수치로 중성인 pH7을 기준으로 수치가 낮으면 산성, 높으면 알칼리성이다. 산성은 신맛을 알칼리성은 쓴맛을 낸다. 스틸워터는 대부분은 pH7을 중심으로 크게 벗어나지 않지만 탄산수는 산성이 강한 편이다.\n2. 경도\n물은 경도에 따라 연수, 중수, 경수로 나뉜다. 칼슘염, 마그네슘염 등이 적게 함유된 경도 20이하의 물이 연수며 함유량이 높은 경도 20이상의 물이 경수다. 물의 경도에 따라 물의 느낌이 좌우된다. 연수는 느낌이 부드러워 ‘단물’로 경수는 센 느낌이 강해 ‘센물’로 불린다.\n3. 무기물함유량(TDS)\nTDS(Total Dissolved Solid)는 물 속에 녹아 있는 미네랄, 유기물, 무기물 등의 물질 함유량 재는 수질 측정 단위다. 칼슘, 철, 마그네슘 등이 적당히 함유된 물의 맛이 좋다. 대략 40~200ppm 정도면 적당하다.\n4. 탄산함유량\n탄산수소는 물의 청량감을 좌우한다. ‘페리에’등의 탄산수는 이러한 맛을 극대화 하기위해 탄산을 가미한 것이다. 물은 탄산수소의 함유량에 따라 5가지로 나뉜다.\n5. 질산염함유량\n자연적인 물에는 리터당 질산염이 1밀리그램 이하로 포함돼 있다. 질산염이 높다는 것은 오염 물질이 많이 섞여 있다는 뜻이다. 따라서 질산염 함유량은 물의 종합적인 품질을 측정하는 데 좋은 기초 자료가 된다."
+    />
+    </ScrollView>
+
+</LinearLayout>

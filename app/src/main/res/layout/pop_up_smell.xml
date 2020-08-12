@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:text="냄새"
+        android:fontFamily="@font/hangulnuribold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/water_smell"
+        />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"  >
+    <TextView
+        android:id="@+id/textView2"
+        android:textColor="#000000"
+        android:fontFamily="@font/hangulnuri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "\n정의: 하천의 강물에서 자주 접할 수 있는 비린내. 엄밀히 말해 물 자체의 냄새는 아니다. 물에 함유된 불순물이 원인이다. 주된 원인 물질은 '지오스민'으로, 흙에 서식하는 그람양성균이나 남세균이 주로 합성하는 물질이다. 즉 이 냄새는 흙냄새와도 밀접한 관련이 있으며, 이는 민물고기에서 나는 흙비린내도 마찬가지이다.
+옅게 나는 경우엔 인간에게 좋은 냄새로 인식될 수도 있는데, 그게 바로 '비 냄새'다. 빗방울이 흙에 떨어질때 지오스민 분자가 공기중으로 분사되어 인간이 맡게 되는 것이다. 비가 오기 전부터 인간이 비 냄새를 맡을 수 있는 이유는, '비가 온다'고 인식하기도 전에 떨어진 극소량의 빗방울로 인한 극미량의 지오스민도 인간은 인식할 수 있기 때문이다. 지오스민은 후각이 많이 퇴화한 인간이 아직도 예민하게 감지할 수 있는 물질 중 하나이다.\n\n기준: '적합 = 매우 좋음', '부적합 = 매우 나쁨' 으로 출력하고 있다.\n\n측정: 염소제를 사용하면서 민원이 많이 들어온 뒤부터 조류 경보제를 사용하고 있는데 이러하다. 수돗물에서 냄새물질 발생을 저감하기 위하여 원수에서 남조류 다량 발생 시 조류경보제를 시행하여 효율적으로 정수처리를 하고 있다. 2012년 잠실수중보 상류1구간에 조류주의보가 15일간 발령되었으며 2000년부터 현재까지 한강 서울구간에 총 6회 조류주의보가 발령된 바 있으며 녹조의 피해로는 냄새 및 독성물질 발생, 정수처리기능 장애 등을 들 수 있다. 이에 우리시에서는 잠실조류경보제와 함께 2012년부터는 최초로 냄새물질인 지오스민, 2-MIB항목에 대하여 냄새경보제를 시행하여 냄새물질 발생에 선제적으로 대응하여 수돗물에서 냄새발생을 저감시키고 있다. 조류 및 냄새물질이 다량 발생하여 경보 발령 시에는 조류 및 냄새물질 수질검사를 주 1회에서 일 1회 이상으로 강화하고, 분말활성탄 투입, 취수장 전염소 중지후 정수장에서 활성탄 처리 후 중염소 주입 등 최적의 정수처리로 냄새물질을 최대한 제거하여 수돗물을 공급하고 있다. \n
+측정기준은 다음과 같으니 자세한 것은 인터넷을 참고 바란다.클로로필-a농도(mg/m3), 남조류세포수(세포/mL), 지오스민(ng/L), 2-MIB(ng/L)"
+    />
+    </ScrollView>
+
+</LinearLayout>

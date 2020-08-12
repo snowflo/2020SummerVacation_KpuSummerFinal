@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:text="pH"
+        android:fontFamily="@font/hangulnuribold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/water_ph"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"  >
+    <TextView
+        android:id="@+id/textView2"
+        android:textColor="#000000"
+        android:fontFamily="@font/hangulnuri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "\n정의: 1909년, 덴마크의 화학자 쇠렌 페터 라우리츠 쇠렌
+센에 의해 수소 이온의 몰 농도로 수소 이온 농도의 지수를 정량화
+하는 개념(이하 p[H]p[H])이 제창되었으나, 이후 화학퍼텐셜로 실횻값을 더
+ 엄밀하게 기술하는 방법이 고안되었고 측정기도 개발되어 1924년에 활동도(activity)를 이
+용한 정의(이하 pHpH)로 수정되었다. 후술하겠지만 수정되었다고 해서 크게 달라진 것은 없고, 몰 농도의
+ 수치가 활동도로 대체된 것 뿐이다. 오늘날 이온 선택성 전극(ion-selective electrode)을 이용해서 측정하는 pHpH 미터기
+는 모두 수소 이온(하이드로늄 이온)의 활동도를 측정하는 방식이다.\n\n기준: 위 표를 참조 \n\n측정: pH 미터(pH meter)는 수용액 내 수소 이온 활동도를 측정하는 과학 기구의 하나로서, 산성이나 알칼리성을 pH로 표현하여 나타낸다. pH 미터는 pH 전극과 참조 전극 간 전위차를 측정하므로 pH 미터는 전위차 pH 미터(potentiometric pH meter)라고 부르기도 한다. 뿐만 아니라 우리가 과학
+시간에 사용하는 리트머스 종이도 pH를 측정하는 도구 중에 하나이다."
+    />
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:text="색도"
+        android:fontFamily="@font/hangulnuribold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/water_color"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"  >
+    <TextView
+        android:id="@+id/textView2"
+        android:textColor="#000000"
+        android:fontFamily="@font/hangulnuri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "\n정의: 눈으로 느끼는 색(색감 또는 색자극)은 색의 측색적인 성질과 밝기(자극값)에 의해 정해지는데, 그 중에서 밝기를 무시한 색의 성질을 색도라 한다. 물은 무색 액체이다. 그렇기 때문에 물의 색으로 직관적으로 물의 식용 가능 여부를 판단할 수 있다.\n\n기준: ' (수치=0) 매우 좋음', '(수치>0) 매우 나쁨' 으로 출력하고 있다.\n\n측정: 측정은 색도 표시법으로 하고 있는데 이는 색도계를 사용해서 측정하고 있다. 색도계는 일반적인 것으로서는 3색 색도계가 있다. 이것은 색도계의 기본색인 빨강·녹색·파랑의 3색광을 증감혼합해서 얻은 색과 측정하고자 하는 빛의 색을 비교하도록 만들어져 있다. 혼합색이 측정할 빛의 색과 같아 보일 때의 기본색의 양(색도계의 3자극값)을 눈금에 의해 파악하고, 그 양을 기준으로 색도좌표를 산출한 다음, 그 값을 CIE(국제조명위원희:ICI라고도 한다) 표준표색계에 따른 값으로 환산하면 색도가 구해진다."
+    />
+    </ScrollView>
+
+</LinearLayout>

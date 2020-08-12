@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegionSelect"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- debug~ -->
+    <TextView
+        android:id="@+id/Experiment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#5b98d1"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        android:text="test1"
+        android:fontFamily="@font/hangulnuribold"/>
+
+    <TextView
+        android:id="@+id/Experiment2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test2"
+        android:fontFamily="@font/hangulnuri"/>
+    <!-- ~debug -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/choose"
+            android:layout_width="81dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/hangulnuribold"
+            android:text="확인" />
+    </LinearLayout>
+
+</LinearLayout>
