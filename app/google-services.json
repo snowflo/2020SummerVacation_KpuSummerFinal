@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "312451266332",
+    "firebase_url": "https://snowflo-firebasetest.firebaseio.com",
+    "project_id": "snowflo-firebasetest",
+    "storage_bucket": "snowflo-firebasetest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312451266332:android:b21a23470621ad7329acd9",
+        "android_client_info": {
+          "package_name": "kr.ac.kpu.kpusummerwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312451266332-4t840gqs1psn9ve0egm6d458h0ut89f8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.ac.kpu.kpusummerwater",
+            "certificate_hash": "963da5e93e4731e9f2c97e0d00249b46841891cc"
+          }
+        },
+        {
+          "client_id": "312451266332-o0pjbags55nlcmtvlgunotg3ao5ov5dp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQEjOQMGyie25nfnjO1Z5XqYA2x98tAwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312451266332-o0pjbags55nlcmtvlgunotg3ao5ov5dp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
