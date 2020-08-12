@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             .setTitle("장소 선택")
             .setSingleChoiceItems(placeArray, -1, { _, which ->
                 if(which == 0){
-                    mainIntent = Intent(this,MapsActivity::class.java)
+                    mainIntent = Intent(this,WaterView::class.java)
                 }
                 else{
                     mainIntent = Intent(this,RegionSelect::class.java)
