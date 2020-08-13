@@ -7,29 +7,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_water_view.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kr.ac.kpu.kpusummerwater.sampledata.ui.review.GiveMessage
 import kr.ac.kpu.kpusummerwater.sampledata.ui.review.Login
-import kr.ac.kpu.kpusummerwater.sampledata.ui.review.Review
-import kr.ac.kpu.kpusummerwater.sampledata.ui.review.ReviewList
 import kr.ac.kpu.kpusummerwater.slideshow.SlideshowFragment
 import kr.ac.kpu.kpusummerwater.ui.Review.News
 import okhttp3.*
-import org.jetbrains.anko.toast
 import java.io.IOException
 import java.time.LocalDate
+import java.util.*
 
-//WaterViewWaterView..
 class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var appBarConfiguration: AppBarConfiguration
-
-    var currentUser = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +34,6 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         //데이터 들어오는지 체크
         if (intent.hasExtra("WaterData")) {
-
-            var SiTest:String? = null
-            var DongTest:String? = null
-
 
             //데이터 들어오는지 체크
             var data = intent.getParcelableExtra<data>("WaterData")
@@ -89,16 +76,8 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             R.id.item3-> itemIntent = Intent(this, SlideshowFragment::class.java) //상세
             R.id.item4-> itemIntent = Intent(this, News::class.java) //뉴스
             R.id.item5-> itemIntent = Intent(this, Login::class.java) //로그인
-            /*
-            R.id.item2->
-                if(currentUser!=null) { //피드백
-                    itemIntent = Intent(this, Review::class.java)
-                }else{
-                    itemIntent = Intent(this,GiveMessage::class.java)
-                }
-             */
         }
-            startActivity(itemIntent)
+        startActivity(itemIntent)
         return false
     }
     //뒤로가기 재정의 (네비게이션 드로어 - > 뒤로가기 프로그램 종료 방지함)
@@ -106,7 +85,6 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawers()
             // 테스트를 위해 뒤로가기 버튼시 Toast 메시지
-            Toast.makeText(this, "back btn clicked", Toast.LENGTH_SHORT).show()
         } else {
             super.onBackPressed()
         }
@@ -119,51 +97,47 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         if(cityName == "서울특별시"){
             sitenm = "\"일운정수장\""
         } else if(cityName == "부산광역시"){
-            sitenm = "\"고령정수장\""
-        } else if(cityName == "대구광역시"){
             sitenm = "\"광주1정수장\""
-        } else if(cityName == "인천광역시"){
+        } else if(cityName == "대구광역시"){
             sitenm = "\"광주2정수장\""
-        } else if(cityName == "광주광역시"){
+        } else if(cityName == "인천광역시"){
             sitenm = "\"광주3정수장\""
-        } else if(cityName == "대전광역시"){
+        } else if(cityName == "광주광역시"){
             sitenm = "\"단양정수장\""
-        } else if(cityName == "울산광역시"){
-            sitenm = "\"영춘정수장\""
-        } else if(cityName == "세종특별자치시"){
-            sitenm = "\"동두천정수장\""
-        }else if(cityName == "경기도"){
-            sitenm = "\"물야정수장\""
-        }else if(cityName == "강원도"){
+        } else if(cityName == "대전광역시"){
             sitenm = "\"봉화정수장\""
+        } else if(cityName == "울산광역시"){
+            sitenm = "\"일운정수장\""
+        } else if(cityName == "세종특별자치시"){
+            sitenm = "\"광주1정수장\""
+        }else if(cityName == "경기도"){
+            sitenm = "\"광주2정수장\""
+        }else if(cityName == "강원도"){
+            sitenm = "\"광주3정수장\""
         }else if(cityName == "충청북도"){
-            sitenm = "\"석포정수장\""
+            sitenm = "\"일운정수장\""
         } else if(cityName == "충청남도"){
-            sitenm = "\"소천정수장\""
+            sitenm = "\"광주1정수장\""
         } else if(cityName == "전라북도"){
-            sitenm = "\"재산정수장\""
+            sitenm = "\"광주2정수장\""
         } else if(cityName == "전라남도"){
-            sitenm = "\"춘양정수장\""
+            sitenm = "\"광주2정수장\""
         } else if(cityName == "경상북도"){
-            sitenm = "\"곤명정수장\""
+            sitenm = "\"광주3정수장\""
         } else if(cityName == "경상남도"){
-            sitenm = "\"감천정수장\""
+            sitenm = "\"단양정수장\""
         } else if(cityName == "제주특별자치도"){
-            sitenm = "\"예천정수장\""
+            sitenm = "\"봉화정수장\""
         } else{
-            sitenm = "\"대야정수장\""
+            sitenm = "\"일운정수장\""
         }
 
         val onlyDate: LocalDate = LocalDate.now()
 
-
-        //val url = "http://opendata.kwater.or.kr/openapi-data/service/pubd/waterinfos/waterquality/daywater/list?serviceKey=ZqjrQQ5DoczvhNkENLU%2BBTlJBXmacSi%2BSTnkdmFdQOkTZf8jxK%2BpgnQnONs5h35H%2BYhNIN7QSto2e9NhB%2Bgj1g%3D%3D&sgccd<99999&sitecd<99999&stdt="+onlyDate+"&eddt="+onlyDate+"&_type=json"
-        //val url = "http://opendata.kwater.or.kr/openapi-data/service/pubd/waterinfos/waterquality/daywater/list?serviceKey=ZqjrQQ5DoczvhNkENLU%2BBTlJBXmacSi%2BSTnkdmFdQOkTZf8jxK%2BpgnQnONs5h35H%2BYhNIN7QSto2e9NhB%2Bgj1g%3D%3D&sgccd<99999&sitecd<99999&stdt=20190815&eddt=20190815&_type=json"
         var url = "http://opendata.kwater.or.kr/openapi-data/service/pubd/waterinfos/waterquality/daywater/list?serviceKey=ZqjrQQ5DoczvhNkENLU%2BBTlJBXmacSi%2BSTnkdmFdQOkTZf8jxK%2BpgnQnONs5h35H%2BYhNIN7QSto2e9NhB%2Bgj1g%3D%3D&sgccd<99999&sitecd<99999&stdt=20200708&eddt=20200708&_type=json"
         var request = Request.Builder().url(url).build()
         var client = OkHttpClient()
 
-        // Response가 있으면 실행하는 구문 okhttp를 사용
         client.newCall(request).enqueue(object: Callback {
             override fun onResponse(call: Call?, response: Response?) {
                 var body = response?.body()?.string()
@@ -244,6 +218,7 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                         } else{
                             Taste_good = "매우 나쁨"
                         }
+
                         Smell = rootObj.asJsonArray.get(i).asJsonObject.get("data2").toString()
 
                         if(Smell == "\"적합\""){
@@ -276,11 +251,13 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                     }
                 }
                 runOnUiThread{
-                    var random_val = 1
+                    var num = Random()
+                    var random_val = num.nextInt(3)
                     if(resultvalue == "매우 좋음"){
                         emoImage.setImageResource(R.drawable.very_good)
                         textLayout.setBackgroundColor(resources.getColor(R.color.very_good))
                         detailLayout.setBackgroundColor(resources.getColor(R.color.very_good))
+                        background.setBackgroundColor(resources.getColor(R.color.very_good))
                         if((random_val % 3) == 0) {
                             messageText.text = "캬~ 물이 이보다 좋을 수 있을까요~"
                         }
@@ -294,6 +271,7 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                         emoImage.setImageResource(R.drawable.good)
                         textLayout.setBackgroundColor(resources.getColor(R.color.good))
                         detailLayout.setBackgroundColor(resources.getColor(R.color.good))
+                        background.setBackgroundColor(resources.getColor(R.color.good))
 
                         if((random_val % 3) == 0) {
                             messageText.text = "캬~ 물 맛 좋다!!"
@@ -308,6 +286,7 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                         emoImage.setImageResource(R.drawable.normal)
                         textLayout.setBackgroundColor(resources.getColor(R.color.normal))
                         detailLayout.setBackgroundColor(resources.getColor(R.color.normal))
+                        background.setBackgroundColor(resources.getColor(R.color.normal))
 
                         if((random_val % 3) == 0) {
                             messageText.text = "다른 물을 찾아보는게 어떨까요?"
@@ -322,6 +301,8 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                         emoImage.setImageResource(R.drawable.bad)
                         textLayout.setBackgroundColor(resources.getColor(R.color.bad))
                         detailLayout.setBackgroundColor(resources.getColor(R.color.bad))
+                        background.setBackgroundColor(resources.getColor(R.color.bad))
+
                         if((random_val % 3) == 0) {
                             messageText.text = "이건 물이 아니라 액체입니다"
                         }
@@ -335,6 +316,7 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                         emoImage.setImageResource(R.drawable.very_bad)
                         textLayout.setBackgroundColor(resources.getColor(R.color.very_bad))
                         detailLayout.setBackgroundColor(resources.getColor(R.color.very_bad))
+                        background.setBackgroundColor(resources.getColor(R.color.very_bad))
                         if((random_val % 3) == 0) {
                             messageText.text = "이 물을 마셨다면 병원부터 가보세요"
                         }
@@ -361,15 +343,10 @@ class WaterView : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                     clText2.text = Cl
                     clText3.text = Cl_good
                 }
-
-
-
-
             }
             override fun onFailure(call: Call, e: IOException) {
                 println("리퀘스트 실패")
             }
         })
     }
-
 }

@@ -4,8 +4,6 @@
     tools:showIn="navigation_view">
 
     <!-- 위에 tools가 결정적 차이 -->
-    <group android:checkableBehavior="single">
-        <!-- 임시 Id-->
         <item
             android:id="@+id/item1"
             android:icon="@drawable/ic_baseline_home_24"
@@ -13,13 +11,7 @@
         <item
             android:id="@+id/item5"
             android:icon="@drawable/ic_baseline_lock_24"
-            android:title="로그인" />
-        <!--
-        <item
-            android:id="@+id/item2"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="피드백" />
-            -->
+            android:title="문의사항" />
         <item
             android:id="@+id/item3"
             android:icon="@drawable/ic_baseline_view_list_24"
@@ -29,9 +21,4 @@
             android:icon="@drawable/ic_baseline_info_24"
             android:title="뉴스"/>
         <!-- 임시 Id-->
-    </group>
-
-    <!-- 보류 (반으로 가르는 법 못찾음) -->
-
-    <!-- 보류 (반으로 가르는 법 못찾음) -->
 </menu>

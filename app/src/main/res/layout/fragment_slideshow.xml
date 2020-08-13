@@ -16,6 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="상세 성분 정보"
+        android:fontFamily="@font/hangulnuribold"
+        android:textColor="#000000"
         android:textSize="21dp"/>
     </LinearLayout>
     <LinearLayout

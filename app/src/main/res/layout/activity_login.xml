@@ -5,45 +5,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".sampledata.ui.review.Login">
+    tools:context=".sampledata.ui.review.Login"
+    android:background="#4EF3DA">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="373dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/hangulnuribold"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:text="수질 데이터 정보 제공 앱\n H to O"
+        />
 
+    <ImageView
+        android:layout_width="177dp"
+        android:layout_height="177dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/watericon" />
 
     <EditText
         android:id="@+id/editLoginId"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="id" />
+        android:hint="email"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editLoginPassword"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:ems="10"
+        android:hint="password"
         android:inputType="textPersonName"
-        android:hint="password" />
+        android:layout_marginBottom="20dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/signUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그인"/>
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="330dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/hangulnuribold"
+        android:text="로그인" />
 
         <Button
             android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        android:text="로그아웃"/>
-    </LinearLayout>
+            android:layout_width="330dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/hangulnuribold"
+        android:text="로그아웃"
+            android:layout_marginBottom="15dp"/>
+
     <Button
         android:id="@+id/makeAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="330dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/hangulnuribold"
         android:text="회원가입"/>
 
 </LinearLayout>

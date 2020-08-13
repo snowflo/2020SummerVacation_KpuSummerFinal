@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="8dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
@@ -110,20 +110,13 @@
             android:fontFamily="@font/hangulnuri"
             android:textSize="18sp" />
         <!-- 이미지 넣어서 절취선 -->
-        <ImageView
-
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/line_view" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/detailBaseLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:orientation="vertical"
         >
 
@@ -135,6 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_margin="10dp"
                 >
 
                 <TableLayout
@@ -147,7 +141,8 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/com_rounded_topcorner">
+                        android:background="@drawable/com_rounded_topcorner"
+                        android:padding="5dp">
 
                         <TextView
                             android:id="@+id/componentText"
@@ -183,7 +178,8 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/com_rounded_corner">
+                        android:background="@drawable/com_rounded_corner"
+                        android:padding="5dp">
 
                         <TextView
                             android:id="@+id/PHText1"
@@ -217,7 +213,8 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/com_rounded_corner">
+                        android:background="@drawable/com_rounded_corner"
+                        android:padding="5dp">
                         <TextView
                             android:id="@+id/colorText1"
                             android:layout_width="match_parent"
@@ -248,7 +245,8 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/com_rounded_corner">
+                        android:background="@drawable/com_rounded_corner"
+                        android:padding="5dp">
                         <TextView
                             android:id="@+id/darkText1"
                             android:layout_width="match_parent"
@@ -279,7 +277,8 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/com_rounded_corner">
+                        android:background="@drawable/com_rounded_corner"
+                        android:padding="5dp">
                         <TextView
                             android:id="@+id/tasteText1"
                             android:layout_width="match_parent"
@@ -310,7 +309,8 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/com_rounded_corner">
+                        android:background="@drawable/com_rounded_corner"
+                        android:padding="5dp">
                         <TextView
                             android:id="@+id/smellText1"
                             android:layout_width="match_parent"
@@ -341,7 +341,8 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/com_rounded_bottomcorner">
+                        android:background="@drawable/com_rounded_bottomcorner"
+                        android:padding="5dp">
                         <TextView
                             android:id="@+id/clText1"
                             android:layout_width="match_parent"

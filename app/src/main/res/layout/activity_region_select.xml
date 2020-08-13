@@ -1,31 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegionSelect"
     android:orientation="vertical"
     android:padding="16dp">
-
-    <!-- debug~ -->
-    <TextView
-        android:id="@+id/Experiment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#5b98d1"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        android:text="test1"
-        android:fontFamily="@font/hangulnuribold"/>
-
-    <TextView
-        android:id="@+id/Experiment2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="test2"
-        android:fontFamily="@font/hangulnuri"/>
-    <!-- ~debug -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,18 +30,73 @@
             android:layout_width="81dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/button_background"
+            android:background="@drawable/button_background2"
             android:fontFamily="@font/hangulnuribold"
             android:text="확인" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="32dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.7"
+            android:fontFamily="@font/hangulnuribold"
+            android:gravity="center"
+            android:text="       당신의 현재 위치는?"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <ImageView
+            android:layout_width="0.5dp"
+
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/map_location" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:background="@drawable/function" />
+
+        <TextView
+            android:id="@+id/whereiam"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="5"
+            android:fontFamily="@font/hangulnuri"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="14dp"
+            android:text="GPS 기능이 꺼져있습니다."/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="37dp"
+            android:background="@drawable/function2" />
+    </LinearLayout>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".RegionSelect" />
-
 </LinearLayout>

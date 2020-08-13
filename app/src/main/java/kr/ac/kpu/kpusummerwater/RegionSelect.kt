@@ -6,7 +6,8 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
@@ -15,6 +16,8 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -28,14 +31,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_region_select.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
+import java.io.IOException
+import java.util.*
 
-//confict test aa
 class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -46,9 +49,8 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
     lateinit var locationRequest: LocationRequest // 위치 요청
     lateinit var locationCallback: RegionSelect.MyLocationCallBack // 내부 클래스, 위치 변경 후 지도에 표시.
 
-    val polyLineOptions = PolylineOptions().width(5f).color(Color.RED)
-    //경로를 표시할 펜 구성.
-    // 다각으로 꺽어지는 선, 굵기는 5f, 색상은 빨강.
+    //val polyLineOptions = PolylineOptions().width(5f).color(Color.RED)
+    //경로를 표시할 펜 구성. 다각으로 꺽어지는 선, 굵기는 5f, 색상은 빨강.
 
     val REQUEST_ACCESS_FINE_LOCATION = 1000
 
@@ -57,53 +59,31 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
 
 
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        // 어플이 사용되는 동안 화면 끄지 않기.
-
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        // 세로모드 고정.
-
         setContentView(R.layout.activity_region_select)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
-        // as 는 형변환
         mapFragment.getMapAsync(this)
-        // 비동기 -> 기다리지 않고 처리하는 것(타이밍을 맞추지 않고 처리)
-        // 전화기, 무전기
         locationInit()
+
+
 
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION // 위치에 대한 권한 요청
             )
             != PackageManager.PERMISSION_GRANTED
-// 사용자 권한 체크로
-// 외부 저장소 읽기가 허용되지 않았다면
         ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
                 )
             ) { // 허용되지 않았다면 다시 확인.
-                alert(
-                    "사진 정보를 얻으려면 외부 저장소 권한이 필수로 필요합니다.",
-
-                    "권한이 필요한 이유"
-                ) {
-                    yesButton {
-                        // 권한 허용
-                        ActivityCompat.requestPermissions(
-                            this@RegionSelect,
-                            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                            REQUEST_ACCESS_FINE_LOCATION
-                        )
+                alert("사진 정보를 얻으려면 외부 저장소 권한이 필수로 필요합니다.", "권한이 필요한 이유") {
+                    yesButton { ActivityCompat.requestPermissions(this@RegionSelect, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_ACCESS_FINE_LOCATION)
                     }
                     noButton {
-                        // 권한 비허용
-                    }
-                }.show()
+                    } }.show()
             } else {
                 ActivityCompat.requestPermissions(
                     this,
@@ -115,19 +95,21 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
             addLocationListener()
         }
 
+
+
+
+
         val si_items = resources.getStringArray(R.array.cities) //서울 ~ 제주
         val myAdapter = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_dropdown_item, si_items)
-        //     컨택스트                 만들어질 Layout Resource              리스트
+        // 컨택스트 만들어질 Layout Resource 리스트
         val intent = Intent(this, WaterView::class.java)
 
         var si:String = "why" //시
         var dong:String = "this" //동
-        // intent로 데이터 넘겨주기
 
         val waterbundle = Bundle()
         waterbundle.putSerializable("Si", si)
         waterbundle.putSerializable("Dong", dong)
-
 
         choose.setOnClickListener(){//버튼
             //여기에 이제 스피너 조건 넣어서 만족하는 조건을 다음 3번째 엑티비티에 인텐트 넘겨주면 됨
@@ -143,7 +125,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) { //시 선택
                 si = spinner.selectedItem as String
-                Experiment.text=si
                 when(position){
                     0 -> {
 
@@ -158,7 +139,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
 
@@ -175,7 +155,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -191,7 +170,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -207,7 +185,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -223,7 +200,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -239,7 +215,7 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
+
                             }
                         }
                     }
@@ -255,7 +231,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -271,7 +246,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -287,7 +261,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -303,7 +276,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -319,7 +291,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -335,7 +306,7 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
+
                             }
                         }
                     }
@@ -351,7 +322,7 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
+
                             }
                         }
                     }
@@ -367,7 +338,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -383,7 +353,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -400,7 +369,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -417,7 +385,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
                             }
                             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                                 dong = spinner2.selectedItem as String
-                                Experiment2.text = dong
                             }
                         }
                     }
@@ -432,10 +399,8 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
             REQUEST_ACCESS_FINE_LOCATION -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED) {
-// 권한이 승인 됐다면
                     addLocationListener()
                 } else {
-// 권한이 거부 됐다면
                     toast("권한 거부 됨")
                 }
                 return
@@ -445,7 +410,6 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
 
     fun locationInit() {
         fusedLocationProviderClient = FusedLocationProviderClient(this)
-        // 현재 사용자 위치를 저장.
         locationCallback = MyLocationCallBack() // 내부 클래스 조작용 객체 생성
         locationRequest = LocationRequest() // 위치 요청.
 
@@ -458,23 +422,23 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        val guro = LatLng(37.485284, 126.901451)
+        //mMap.addMarker(MarkerOptions().position(guro).title("구로디지털단지역"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(guro,15f))
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
     }
+    
 
     override fun onResume() { // 잠깐 쉴 때.
         super.onResume()
         addLocationListener()
     }
-
+/*
     fun removeLocationLister(){
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
-        // 어플이 종료되면 지도 요청 해제.
     }
-
+*/
     @SuppressLint("MissingPermission")
     // 위험 권한 사용시 요청 코드가 호출되어야 하는데,
     // 없어서 발생됨. 요청 코드는 따로 처리 했음.
@@ -488,56 +452,71 @@ class RegionSelect : AppCompatActivity(), OnMapReadyCallback {
     inner class MyLocationCallBack : LocationCallback() {
         override fun onLocationResult(p0: LocationResult?) {
             super.onLocationResult(p0)
-
             val location = p0?.lastLocation
             // 위도 경도를 지도 서버에 전달하면,
             // 위치에 대한 지도 결과를 받아와서 저장.
-
             location?.run {
                 val latLng = LatLng(latitude, longitude) // 위도 경도 좌표 전달.
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
-                // 지도에 애니메이션 효과로 카메라 이동.
-                // 좌표 위치로 이동하면서 배율은 17 (0~19까지 범위가 존재.)
-
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
                 Log.d("MapsActivity", "위도: $latitude, 경도 : $longitude")
 
-//              markerOptions.position(latLng) // 마커를 latLng으로 설정
-//
-//              mMap.addMarker(markerOptions) // googleMap에 marker를 표시.
+                markerOptions.position(latLng) // 마커를 latLng으로 설정
+                mMap.addMarker(markerOptions) // googleMap에 marker를 표시.
 
-                polyLineOptions.add(latLng) // polyline 기준을 latLng으로 설정
-
-                mMap.addPolyline(polyLineOptions) // googleMap에 ployLine을 그림.
-
+                //polyLineOptions.add(latLng) // polyline 기준을 latLng으로 설정
+                //mMap.addPolyline(polyLineOptions) // googleMap에 ployLine을 그림.
+                var addressName : String? = getCurrentAddress(latitude,longitude) //주소 얻어옴
+                runOnUiThread{
+                    whereiam.text=addressName
+                }
             }
         }
     }
 
+    fun getCurrentAddress(latitude: Double, longitude: Double): String? {
 
+        //지오코더... GPS를 주소로 변환
+        val geocoder = Geocoder(this, Locale.getDefault())
+        val addresses: List<Address>
+        addresses = try {
+            geocoder.getFromLocation(
+                latitude,
+                longitude,
+                7
+            )
+        } catch (ioException: IOException) {
+
+            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
+            return "지오코더 서비스 사용불가"
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
+            return "잘못된 GPS 좌표"
+        }
+        if (addresses == null || addresses.size === 0) {
+            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show()
+            return "주소 미발견"
+        }
+        val address: Address = addresses[0]
+        return address.getAddressLine(0).toString() + "\n"
+    }
 }
-
-
 
 class data(var Si: String?, var Dong: String?) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString()) {
     }
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(Si)
         parcel.writeString(Dong)
     }
-
     override fun describeContents(): Int {
         return 0
     }
-
     companion object CREATOR : Parcelable.Creator<data> {
         override fun createFromParcel(parcel: Parcel): data {
             return data(parcel)
         }
-
         override fun newArray(size: Int): Array<data?> {
             return arrayOfNulls(size)
         }

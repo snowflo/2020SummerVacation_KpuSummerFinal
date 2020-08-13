@@ -3,10 +3,8 @@ package kr.ac.kpu.kpusummerwater.ui.Review
 import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,15 +13,11 @@ import kr.ac.kpu.kpusummerwater.R
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
-import java.io.IOException
 import java.util.*
 
-
 class News : AppCompatActivity() {
-
     val weburl = "https://www.kwater.or.kr/news/repoList.do?brdId=KO26&s_mid=36"
-    val TAG = "News"
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
@@ -37,7 +31,6 @@ class News : AppCompatActivity() {
 
     //AsyncTask 정의
     inner class MyAsyncTask: AsyncTask<String, String, String>(){ //input, progress update type, result type
-        private var result : String = ""
         var newsList: ArrayList<Item> = arrayListOf()
 
         override fun onPreExecute() {
@@ -45,19 +38,24 @@ class News : AppCompatActivity() {
             progressBar.visibility = View.VISIBLE
         }
 
-        override fun doInBackground(vararg params: String?): String {
-            val doc: Document = Jsoup.connect("$weburl").get()
+        override fun doInBackground(vararg params: String?): String? {
+            var doc: Document = Jsoup.connect("http://english.kwater.or.kr/news/repoList.do?brdId=KO26&s_mid=36").get()
             val elts: Elements = doc.select(".bodo_list").select("div[class=text]")
 
-            elts.forEachIndexed{ index, elem ->
+            elts.forEachIndexed { index, elem ->
                 val title = elem.select("p[class=title]").text()
-                val a_href = elem.select("a").attr("href")
-
                 //추출한 자료를 가지고 데이터 객체를 만들어 ArrayList에 추가해 준다.
-                var mNews = Item(title,"http://english.kwater.or.kr/news/repoList.do?brdId=KO26&s_mid=36")
-                newsList.add(mNews)
+                if(index == 8){
+                    var mNews = Item(title, "http://www.kwater.or.kr/news/repoView.do?brdId=KO26&s_mid=36&seq=120303")
+                    newsList.add(mNews)
+                }else if(index == 9){
+                    var mNews = Item(title, "http://www.kwater.or.kr/news/repoView.do?brdId=KO26&s_mid=36&seq=120299")
+                    newsList.add(mNews)
+                }else{
+                    var mNews = Item(title, "http://www.kwater.or.kr/news/repoView.do?brdId=KO26&s_mid=36&seq="+"${120524-index}")
+                    newsList.add(mNews)
+                }
             }
-
             return doc.title()
         }
 
@@ -73,7 +71,6 @@ class News : AppCompatActivity() {
             rv_news_list.adapter = adapter
         }
     }
-
     //데이터 클래스 객체 생성
     data class Item(val title: String, val url:String)
 }

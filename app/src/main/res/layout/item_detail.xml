@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
-    <!-- 이미지 크기 변경하고싶으면 변경 -->
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/detailImg"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginRight="8dp"
-        android:paddingBottom="5dp"
-        android:src="@mipmap/ic_launcher_round" />
+        android:src="@mipmap/ic_launcher_round"
+        android:scaleType="center" />
 
     <TextView
         android:id="@+id/detailName"
@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:fontFamily="@font/hangulnuri"
+        android:textColor="#000000"
         android:text="num"
         android:textSize="24dp" />
 </LinearLayout>

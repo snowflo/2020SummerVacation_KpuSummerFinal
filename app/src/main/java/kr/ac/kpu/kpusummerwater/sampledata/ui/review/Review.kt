@@ -42,8 +42,4 @@ class Review : AppCompatActivity() {
             .push() //push
             .setValue(map)
     }
-    
-    //update는 생략
-    
-    //delete도 생략
 }
